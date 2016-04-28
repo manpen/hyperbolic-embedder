@@ -1,6 +1,6 @@
 # README #
 
-This is an embedding algorithm that takes a graph as input and outputs hyperbolic coordinates.
+Hyperbolic geometry appears to be intrinsic in many large real networks. We developed and implemented a new maximum likelihood estimation algorithm that embeds scale-free graphs in the hyperbolic space. Our algorithm achieves quasilinear runtime, which makes it the first algorithm that can embed networks with hundreds of thousands of nodes in less than one hour. In typical metrics like Log-likelihood and greedy routing, our algorithm discovers embeddings that are very close to the ground truth.
 
 ### Setup ###
 
