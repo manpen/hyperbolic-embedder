@@ -12,6 +12,7 @@ Hyperbolic geometry appears to be intrinsic in many large real networks. We deve
 * To embed a given graph, run e.g. `./embedder --logtostderr --input="edgelist.txt" --seed=32472351 --embed=myembedding`
 * Results are stored in `myembedding-links.txt` and `myembedding-coordinates.txt`, use `--help` for more information
 
-### Who do I talk to? ###
+### Misc. ###
 
 * If you want to use this algorithm, please cite our corresponding paper (currently under review).
+* Please contact anton.krohmer@hpi.de for further questions.
