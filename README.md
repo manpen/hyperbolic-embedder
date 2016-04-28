@@ -15,4 +15,4 @@ Hyperbolic geometry appears to be intrinsic in many large real networks. We deve
 ### Misc. ###
 
 * If you want to use this algorithm, please cite our corresponding paper (currently under review).
-* Please contact mailto:anton.krohmer@hpi.de for further questions.
+* Please contact anton.krohmer@hpi.de for further questions.
