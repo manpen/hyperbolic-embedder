@@ -365,10 +365,10 @@ int HyperbolicLinear::prepareEmbedding() {
 
   // Restart a few times to get a good embedding
   vector<HYPT> best_pts(pts);
-  double best_score = std::numeric_limits<double>::lowest();
+  double best_score = std::numeric_limits<double>::max();
   FOR(i,5) {
     spring.run(common_neighbors, 600, 1, 0, true);
-    if (spring.score(common_neighbors) > best_score) {
+    if (spring.score(common_neighbors) < best_score) {
       best_score = spring.score(common_neighbors);
       best_pts = pts;
     }
