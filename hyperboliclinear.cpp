@@ -340,7 +340,8 @@ int HyperbolicLinear::prepareEmbedding() {
   }
 
   FOR(i, inner_nodes)
-    important_edges[i].resize(threshold);
+    if (threshold < important_edges[i].size())
+      important_edges[i].resize(threshold);
   FOR(i, inner_nodes)
     for (int inner_neighbor : important_edges[i])
       if (std::count(important_edges[inner_neighbor].begin(),
