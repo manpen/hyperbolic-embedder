@@ -1,12 +1,12 @@
 CC = g++
 
 CFLAGS  = -Wall -g -Os -I/usr/local/include -std=c++11
-LDFLAGS = -lm -lgsl -lgflags -lglog -L/usr/local/lib
+LDFLAGS = -lm -lgsl -lgflags -lglog -lcblas -L/usr/local/lib
 BIN = embedder
 OBJ = hyperboliclinear.o hyperbolic.o graph.o random.o springembedder.o geometricds.o powerlawCommon.o NLEHelper.o
 
 main: main.o
-	$(CC) $(CFLAGS) $(DEFINE) -o $(BIN) $(LDFLAGS) main.o $(OBJ)
+	$(CC) $(CFLAGS) $(DEFINE) -o $(BIN) main.o $(OBJ) $(LDFLAGS)
 
 main.o: hyperboliclinear.o hyperbolic.o graph.o springembedder.o NLEHelper.o
 NLEHelper.o: plfit/powerlawCommon.o
