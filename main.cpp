@@ -73,13 +73,13 @@ int main(int argc, char* argv[]) {
   cout << "Seed: " << FLAGS_seed << endl;
 
   Graph G(0);
-  Hyperbolic* H = NULL;
 
   if (!FLAGS_generate.empty()) {
     double R = 2 * log(FLAGS_n) + FLAGS_C;
-    H = HyperbolicLinear::linearSampling(FLAGS_n, R, FLAGS_alpha, FLAGS_T);
-    G = H->simpleSubgraph();
-    H->printToFile(FLAGS_generate.c_str());
+    HyperbolicLinear H = HyperbolicLinear::linearSampling(FLAGS_n, R, FLAGS_alpha, FLAGS_T);
+    H = H.giantSubgraph();
+    H.printToFile(FLAGS_generate.c_str());
+    G = H.simpleSubgraph();
   } else if (!FLAGS_input.empty()) {
     unordered_map<std::string, int> label_to_node;
     G = Graph::fromFile(FLAGS_input, &label_to_node);
@@ -92,16 +92,9 @@ int main(int argc, char* argv[]) {
     exit(0);
   }
 
-  // Extract giant and sort by degrees
+  // Sort by degrees
   vector<int> perm;
-  G = G.giantSubgraph();
   G.sortByDegrees(&perm);
-  if (H != nullptr) {
-    Hyperbolic* Hy = H->giantSubgraph();
-    delete H;
-    H = Hy;
-    H->sortByDegrees(&perm);
-  }
 
   cout << "Number of nodes in giant: " << G.n << endl;
   cout << "Avg degree: " << G.averageDegree() << endl;

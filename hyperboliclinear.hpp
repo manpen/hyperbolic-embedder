@@ -13,7 +13,7 @@ class HyperbolicLinear : public Hyperbolic {
   HyperbolicLinear(int n, double R, double alpha, double T) :
     Hyperbolic(n, R, alpha, T), L(-1) {};
 
-  static HyperbolicLinear* linearSampling(int n, double R, double alpha,
+  static HyperbolicLinear linearSampling(int n, double R, double alpha,
                                          double T);
 
   // Samples edges in linear time.
@@ -41,8 +41,8 @@ class HyperbolicLinear : public Hyperbolic {
   // or higher.
   bool hasNeighborAboveLayer(int node, int layer, const vector<bool>& active);
 
-  Hyperbolic* subgraph(vector<bool> vertices) override;
-  Hyperbolic* giantSubgraph() override;
+  HyperbolicLinear subgraph(vector<bool> vertices);
+  HyperbolicLinear giantSubgraph();
 
   ~HyperbolicLinear() {};
 

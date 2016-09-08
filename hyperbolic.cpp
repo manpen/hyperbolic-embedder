@@ -103,26 +103,26 @@ HyperbolicTrivial::HyperbolicTrivial(int n, vector<HYPT> pts, double R,
   }
 }
 
-Hyperbolic* Hyperbolic::subgraph(vector<bool> vertices) {
+Hyperbolic Hyperbolic::subgraph(vector<bool> vertices) {
   vector<int> index (n+1);
   index[0] = 0;
   FORB(i,1,n+1) index[i] = index[i-1] + (vertices[i-1] ? 1 : 0);
   int m = index[n];
-  Hyperbolic* G = new Hyperbolic(m, R, alpha, T);
+  Hyperbolic H(m, R, alpha, T);
   FOR(i,n)
   if (vertices[i]) {
-    G->labels[index[i]] = labels[i];
-    G->pts.PB(pts[i]);
+    H.labels[index[i]] = labels[i];
+    H.pts.PB(pts[i]);
     FOR(j,(int)edges[i].size()) {
       int jj = edges[i][j];
       if (vertices[jj])
-        G->edges[index[i]].PB(index[jj]);
+        H.edges[index[i]].PB(index[jj]);
     }
   }
-  return G;
+  return H;
 }
 
-Hyperbolic* Hyperbolic::giantSubgraph() {
+Hyperbolic Hyperbolic::giantSubgraph() {
   vector<int> comp = components();
   vector<bool> gcc = giant(comp);
   return subgraph(gcc);

@@ -57,8 +57,8 @@ class Hyperbolic : public Graph {
     : Graph(n), R(R), alpha(alpha), T(T) {};
   
   // The caller has ownership of the created objects.
-  virtual Hyperbolic* subgraph(vector<bool> vertices);
-  virtual Hyperbolic* giantSubgraph();
+  Hyperbolic subgraph(vector<bool> vertices);
+  Hyperbolic giantSubgraph();
 
   virtual ~Hyperbolic() {};
 
