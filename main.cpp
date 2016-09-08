@@ -77,14 +77,12 @@ int main(int argc, char* argv[]) {
   if (!FLAGS_generate.empty()) {
     double R = 2 * log(FLAGS_n) + FLAGS_C;
     HyperbolicLinear H = HyperbolicLinear::linearSampling(FLAGS_n, R, FLAGS_alpha, FLAGS_T);
-    H = H.giantSubgraph();
     H.printToFile(FLAGS_generate.c_str());
     G = H.simpleSubgraph();
   } else if (!FLAGS_input.empty()) {
     unordered_map<std::string, int> label_to_node;
     G = Graph::fromFile(FLAGS_input, &label_to_node);
     G = G.simpleSubgraph();
-    G = G.giantSubgraph();
   } else {
     cout << "Please either specify an input graph using --input or use "
          << "--generate to generate a random hyperbolic graph. Call with "
@@ -92,7 +90,8 @@ int main(int argc, char* argv[]) {
     exit(0);
   }
 
-  // Sort by degrees
+  // Compute giant and sort by degrees
+  G = G.giantSubgraph();
   vector<int> perm;
   G.sortByDegrees(&perm);
 
