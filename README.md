@@ -14,14 +14,5 @@ Hyperbolic geometry appears to be intrinsic in many large real networks. We deve
 
 ### Misc. ###
 
-* If you want to use this algorithm, please cite our corresponding paper:
-
-        @inproceedings{DBLP:journals/ton/BlasiusFKL18,
-          abstract = {Hyperbolic geometry appears to be intrinsic in many large real networks. We construct and implement a new maximum likelihood estimation algorithm that embeds scale-free graphs in the hyperbolic space. All previous approaches of similar embedding algorithms require at least a quadratic runtime. Our algorithm achieves quasilinear runtime, which makes it the first algorithm that can embed networks with hundreds of thousands of nodes in less than one hour. We demonstrate the performance of our algorithm on artificial and real networks. In all typical metrics like Log-likelihood and greedy routing our algorithm discovers embeddings that are very close to the ground truth.},
-          author = {Bläsius, Thomas and Friedrich, Tobias and Krohmer, Anton and Laue, Sören},
-          booktitle = {Transactions on Networking (ToN)},
-          title = {Efficient Embedding of Scale-Free Graphs in the Hyperbolic Plane},
-          year = 2018
-        }
-	 
+* If you want to use this algorithm, please cite our (corresponding paper)[http://dx.doi.org/10.4230/LIPIcs.ESA.2016.15].	 
 * Please contact anton.krohmer@hpi.de for further questions.
