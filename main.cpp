@@ -4,6 +4,7 @@
 // ./singleexperiment --rgmodel=chunglu --average_degree
 #include <algorithm>
 #include <cmath>
+#include <ctime>
 #include <gflags/gflags.h>
 #include <glog/logging.h>
 #include <iostream>

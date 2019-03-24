@@ -1,7 +1,7 @@
 CC = g++
 
-CFLAGS  = -Wall -g -Os -I/usr/local/include -std=c++11
-LDFLAGS = -lm -lgsl -lgflags -lglog -lcblas -L/usr/local/lib
+CFLAGS  = -Wall -g -O3 -march=native -I/usr/local/include -std=c++11 -I../../include
+LDFLAGS = -lm -lgsl -lgflags -lglog -lgslcblas -L/usr/local/lib
 BIN = embedder
 OBJ = hyperboliclinear.o hyperbolic.o graph.o random.o springembedder.o geometricds.o powerlawCommon.o NLEHelper.o
 
