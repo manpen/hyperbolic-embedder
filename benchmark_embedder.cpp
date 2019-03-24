@@ -137,7 +137,7 @@ double benchmark(std::ostream& os, const std::string& host, unsigned iter, unsig
         ss << "[CSV]"
            << host << ","
            << iter << ","
-           << "HyperGen,"
+           << "Embedder,"
            << n << ","
            << avgDeg << ","
            << alpha << ","
