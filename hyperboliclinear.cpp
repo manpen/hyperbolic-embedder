@@ -27,6 +27,8 @@
 #define PB emplace_back
 #define MP make_pair
 
+#define ACCUM_EDGES_ONLY
+
 using std::vector;
 
 namespace {
@@ -99,6 +101,10 @@ void HyperbolicLinear::sampleEdges() {
 
   int cellA, layerA, cellB, layerB;
 
+  uint64_t accum = 0;
+  uint64_t no_edges = 0;
+  uint64_t no_compares = 0;
+
   FOR(i,L) {
     FORB(j,i,L) {
       // construct partitioning
@@ -118,12 +124,19 @@ void HyperbolicLinear::sampleEdges() {
               int u = points_from_cells[i].kthPoint(cellA, layerA, x);
               int v = points_from_cells[j].kthPoint(cellB, layerB, y);
 
-              if ((j > i || u > v) &&
-                  randdbl() < Hyperbolic::prob(HYPT::dist(pts[u], pts[v]),
-                                               R, T)) {
-                    edges[u].PB(v);
-                    edges[v].PB(u);
-                  }
+              if (j > i || u > v) {
+                no_compares++;
+                if (randdbl() < Hyperbolic::prob(HYPT::dist(pts[u], pts[v]), R, T)) {
+#ifdef ACCUM_EDGES_ONLY
+                  no_edges++;
+                  accum += v;
+                  accum += u;
+#else
+                  edges[u].PB(v);
+                  edges[v].PB(u);
+#endif
+                }
+              }
             }
           }
         } else {
@@ -175,8 +188,14 @@ void HyperbolicLinear::sampleEdges() {
             << ", r_u: " << pts[u].r << ", r_v: " << pts[v].r;
 
             if ((j > i || u > v) && randdbl() < p / p_bar) {
+#ifdef ACCUM_EDGES_ONLY
+              no_edges++;
+              accum += v;
+              accum += u;
+#else
               edges[u].PB(v);
               edges[v].PB(u);
+#endif
             }
 
             if (p_bar == 0)
@@ -195,6 +214,13 @@ void HyperbolicLinear::sampleEdges() {
       }
     }
   }
+
+  std::cout << "Generated " << no_edges << " edges\n"
+               "Compares: " << no_compares << "\n"
+               "Avg. Deg  " << (2.0 * no_edges / n) << "\n";
+  if (accum == 1234567) std::cout << "Accum: " << accum << std::endl;
+
+  num_edges = no_edges;
 }
 
 

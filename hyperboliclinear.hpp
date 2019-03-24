@@ -51,6 +51,8 @@ class HyperbolicLinear : public Hyperbolic {
   GeometricDS<TreePoints> geometric_ds;
   int L;
 
+  long long num_edges {0};
+
  private:
   // Builds weight layers using the radial coordinates.
   void constructWeightLayers();

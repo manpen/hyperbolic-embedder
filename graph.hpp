@@ -18,8 +18,8 @@ class Graph
   
   Graph(int n) {
     this->n = n;
-    edges.resize(n);
-    for(int i = 0; i < n; ++i) labels.push_back(std::to_string(i));
+    //edges.resize(n);
+    //for(int i = 0; i < n; ++i) labels.push_back(std::to_string(i));
   }
   
   Graph(const Graph& G);
